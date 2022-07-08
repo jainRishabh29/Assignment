@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wrapperFragment">
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.assignmentnewz.fragments.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.assignmentnewz.fragments.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/wrapperFragment"
+        android:name="com.example.assignmentnewz.fragments.WrapperFragment"
+        android:label="fragment_wrapper"
+        tools:layout="@layout/fragment_wrapper" >
+        <action
+            android:id="@+id/action_wrapperFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/wrapperFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

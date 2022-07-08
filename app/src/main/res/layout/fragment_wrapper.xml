@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#696969"
+    tools:context=".fragments.WrapperFragment">
+
+    <RadioGroup
+        android:id="@+id/rg_log"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rg_background"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_login"
+            style="@style/RadioButton"
+            android:button="@null"
+            android:checked="true"
+            android:onClick="onClickLogin"
+            android:text="LOGIN" />
+
+        <RadioButton
+            android:id="@+id/rb_signup"
+            style="@style/RadioButton"
+            android:button="@null"
+            android:checked="false"
+            android:onClick="onClickSignUp"
+            android:text="SIGNUP" />
+
+    </RadioGroup>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerLay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/rg_log"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rg_log" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
