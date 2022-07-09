@@ -23,7 +23,6 @@
             style="@style/RadioButton"
             android:button="@null"
             android:checked="true"
-            android:onClick="onClickLogin"
             android:text="LOGIN" />
 
         <RadioButton
@@ -31,7 +30,6 @@
             style="@style/RadioButton"
             android:button="@null"
             android:checked="false"
-            android:onClick="onClickSignUp"
             android:text="SIGNUP" />
 
     </RadioGroup>

@@ -26,4 +26,12 @@
             app:popUpTo="@id/wrapperFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.assignmentnewz.fragments.LogInFragment"
+        android:label="LogInFragment" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.assignmentnewz.fragments.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

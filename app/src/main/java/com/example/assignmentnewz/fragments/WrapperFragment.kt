@@ -1,24 +1,24 @@
 package com.example.assignmentnewz.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
-import androidx.databinding.adapters.RadioGroupBindingAdapter
-import com.example.assignmentnewz.R
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.example.assignmentnewz.adapter.ViewPagerAdapter
-import com.example.assignmentnewz.databinding.FragmentLogInBinding
 import com.example.assignmentnewz.databinding.FragmentWrapperBinding
-import com.google.android.material.tabs.TabLayoutMediator
+
 
 class WrapperFragment : Fragment() {
 
 
-    private var _binding: FragmentWrapperBinding    ? = null
+    private var _binding: FragmentWrapperBinding? = null
     private val binding get() = _binding!!
     @SuppressLint("ResourceType")
     override fun onCreateView(
@@ -31,9 +31,29 @@ class WrapperFragment : Fragment() {
         val mRadioGroup = binding.rgLog
         val viewPager = binding.viewPagerLay
 
+        Toast.makeText(context,"swipe to change",Toast.LENGTH_LONG
+        ).show()
         val adapter = ViewPagerAdapter(requireActivity().supportFragmentManager,lifecycle)
         viewPager.adapter = adapter
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 
+            override fun onPageSelected(position: Int) {
+                Log.d("rb", "onPageSelected: $position")
+
+                when (position) {
+                    0 -> {
+                        binding.rbLogin.isChecked = true
+                        binding.rbSignup.isChecked = false
+                    }
+                    1 -> {
+                        binding.rbLogin.isChecked = false
+                        binding.rbSignup.isChecked = true
+                    }
+                }
+
+                super.onPageSelected(position)
+            }
+        })
         return view
     }
 }

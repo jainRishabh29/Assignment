@@ -35,7 +35,9 @@ class SignUpFragment : Fragment() {
         val view = binding.root
         binding.goToSignIn.setOnClickListener {
             //go to signup fragment
-          //  findNavController().navigate(R.id.action_signUpFragment_to_logInFragment)
+            findNavController().navigate(R.id.logInFragment).also {
+                findNavController().popBackStack(R.id.signUpFragment,true)
+            }
         }
 
         binding.signupBtn.setOnClickListener {
@@ -93,7 +95,7 @@ class SignUpFragment : Fragment() {
                 firebase.createUserWithEmailAndPassword(email, pass)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                          //  findNavController().navigate(R.id.action_signUpFragment_to_WrapperFragment)
+                            findNavController().navigate(R.id.action_wrapperFragment_to_mainFragment)
                         } else {
                             Toast.makeText(
                                 context,
@@ -109,7 +111,7 @@ class SignUpFragment : Fragment() {
         return view
     }
 
-    fun closeKeyboard() {
+    private fun closeKeyboard() {
         val view = requireActivity().currentFocus
         val inputManager: InputMethodManager =
             requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

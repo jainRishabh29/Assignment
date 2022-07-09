@@ -32,7 +32,9 @@ class LogInFragment : Fragment() {
         val view = binding.root
         binding.goToSignUp.setOnClickListener {
             //go to logIn fragment
-          //  findNavController().navigate(R.id.action_logInFragment_to_signUpFragment)
+            findNavController().navigate(R.id.signUpFragment).also {
+                findNavController().popBackStack(R.id.logInFragment,true)
+            }
         }
         binding.loginBtn.setOnClickListener {
             closeKeyboard()
@@ -61,7 +63,7 @@ class LogInFragment : Fragment() {
             if (validate) {
                 firebase.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                       // findNavController().navigate(R.id.action_logInFragment_to_WrapperFragment)
+                        findNavController().navigate(R.id.action_wrapperFragment_to_mainFragment)
                     } else {
                         Toast.makeText(context, "Wrong Credentials", Toast.LENGTH_SHORT).show()
                     }
@@ -90,7 +92,11 @@ class LogInFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (firebase.currentUser != null) {
-           // findNavController().navigate(R.id.action_logInFragment_to_WrapperFragment)
+//            findNavController().navigate(R.id.mainFragment).also {
+//                findNavController().popBackStack(R.id.wrapperFragment,true)
+//            }
+
+            findNavController().navigate(R.id.action_wrapperFragment_to_mainFragment)
         }
     }
 
