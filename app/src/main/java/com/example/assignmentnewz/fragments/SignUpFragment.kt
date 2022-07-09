@@ -35,9 +35,9 @@ class SignUpFragment : Fragment() {
         val view = binding.root
         binding.goToSignIn.setOnClickListener {
             //go to signup fragment
-            findNavController().navigate(R.id.logInFragment).also {
-                findNavController().popBackStack(R.id.signUpFragment,true)
-            }
+//            findNavController().navigate(R.id.logInFragment).also {
+//                findNavController().popBackStack(R.id.signUpFragment,true)
+//            }
         }
 
         binding.signupBtn.setOnClickListener {

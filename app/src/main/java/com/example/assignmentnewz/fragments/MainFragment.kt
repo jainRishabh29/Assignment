@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignmentnewz.R
@@ -16,6 +17,7 @@ import com.example.assignmentnewz.adapter.NewsRecyclerAdapter
 import com.example.assignmentnewz.dataClass.Article
 import com.example.assignmentnewz.databinding.FragmentMainBinding
 import com.example.assignmentnewz.viewModel.MainViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 class MainFragment : Fragment() {
 
@@ -25,6 +27,7 @@ class MainFragment : Fragment() {
     var articles: ArrayList<Article> = ArrayList()
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
+    private val firebase = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +46,10 @@ class MainFragment : Fragment() {
                 adapter.setNews(articles)
             }
         })
+        binding.logout.setOnClickListener {
+            firebase.signOut()
+            findNavController().navigate(R.id.action_mainFragment_to_wrapperFragment)
+        }
         return view
     }
 }
