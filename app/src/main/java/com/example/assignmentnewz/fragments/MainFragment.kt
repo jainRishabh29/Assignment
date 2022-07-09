@@ -1,11 +1,14 @@
 package com.example.assignmentnewz.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -50,6 +53,15 @@ class MainFragment : Fragment() {
             firebase.signOut()
             findNavController().navigate(R.id.action_mainFragment_to_wrapperFragment)
         }
+        binding.searchBar.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_searchFragment)
+        }
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        (requireActivity() as AppCompatActivity).window.statusBarColor = ResourcesCompat.getColor(resources, R.color.statusBarC, null)
     }
 }

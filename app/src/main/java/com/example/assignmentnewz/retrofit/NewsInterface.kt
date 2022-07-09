@@ -13,13 +13,17 @@ const val api_key: String = "f38219279fde4fdf9ddbbedfe2f7cd1e"
 
 interface NewsInterface {
 
-          @GET("v2/top-headlines?apiKey=$api_key")
-          fun getHeadlines(@Query("country") country :String , @Query("q") query:String): Call<News>
+    @GET("v2/top-headlines?apiKey=$api_key")
+    fun getHeadlines(@Query("country") country: String, @Query("q") query: String): Call<News>
+
+    @GET("v2/everything?apiKey=$api_key")
+    fun getSearchNews(@Query("q") query: String): Call<News>
 
 }
 
-object RetroService{
-    val retroInstance : NewsInterface
+object RetroService {
+    val retroInstance: NewsInterface
+
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl(base_url)

@@ -19,7 +19,10 @@ class MainViewModel constructor(application: Application) : AndroidViewModel(app
     val repoInstance = NewsRepository(application)
     lateinit var news: Call<News>
     val news_ = MutableLiveData<News>()
+    lateinit var searchNews: Call<News>
+    val searchNews_ = MutableLiveData<News>()
     var articles: MutableList<Article> = mutableListOf()
+    var searchArticles: MutableList<Article> = mutableListOf()
 
     fun getNews(query: String): MutableLiveData<News> {
         this.news = repoInstance.getServicesApiCall(query)
@@ -37,6 +40,25 @@ class MainViewModel constructor(application: Application) : AndroidViewModel(app
             }
         })
         return news_
+    }
+
+    fun getSearchNews(query: String): MutableLiveData<News> {
+        this.searchNews = repoInstance.getSearchNews(query)
+        searchNews.enqueue(object : Callback<News> {
+            override fun onResponse(call: Call<News>, response: Response<News>) {
+                val news = response.body()
+                if (news != null) {
+                    searchArticles.clear()
+                    searchArticles.addAll(news.articles)
+                    searchNews_.value = News(searchArticles)
+                }
+            }
+
+            override fun onFailure(call: Call<News>, t: Throwable) {
+                Log.d("batao", "Error in fetching", t)
+            }
+        })
+        return searchNews_
     }
 
 }

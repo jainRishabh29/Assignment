@@ -11,4 +11,8 @@ class NewsRepository constructor(val application: Application) {
     fun getServicesApiCall(query: String): Call<News> {
         return RetroService.retroInstance.getHeadlines("in",query)
     }
+
+    fun getSearchNews(query: String): Call<News> {
+        return RetroService.retroInstance.getSearchNews(query)
+    }
 }

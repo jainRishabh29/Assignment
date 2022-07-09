@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.assignmentnewz.R
 import com.example.assignmentnewz.adapter.ViewPagerAdapter
 import com.example.assignmentnewz.databinding.FragmentWrapperBinding
 
@@ -55,5 +58,11 @@ class WrapperFragment : Fragment() {
             }
         })
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+        (requireActivity() as AppCompatActivity).window.statusBarColor = ResourcesCompat.getColor(resources, R.color.wrapperStatusBarC, null)
     }
 }

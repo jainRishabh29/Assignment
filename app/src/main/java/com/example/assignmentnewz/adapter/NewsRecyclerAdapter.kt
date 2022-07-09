@@ -59,20 +59,10 @@ class NewsRecyclerAdapter(private val context: Context) :
         holder.title.text = article.title
         Glide.with(context).load(article.urlToImage)
             .fallback(R.drawable.unnamed).into(holder.newsImage)
-
-        holder.date.text = "change krna h"
-//            {
-//            val publishTime: String = article.publishedAt
-//            val date = publishTime.slice(0..9)
-//            val time = publishTime.slice(11..18)
-//            val snackbar: Snackbar =
-//                Snackbar.make(it, "Published on $date at $time", Snackbar.LENGTH_SHORT)
-//            snackbar.setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
-//            snackbar.show()
-////          Log.d("batao",date.toString())
-//            return@setOnLongClickListener true
-//        }
-
+            val publishTime: String = article.publishedAt
+            val date = publishTime.slice(0..9)
+            val time = publishTime.slice(11..18)
+        holder.date.text = "$date At $time"
     }
 
     override fun getItemCount(): Int {
@@ -90,6 +80,7 @@ class NewsRecyclerAdapter(private val context: Context) :
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setNews(newss: ArrayList<Article>) {
         this.articles_ = newss
         notifyDataSetChanged()
